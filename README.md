@@ -1,0 +1,2 @@
+# server
+wangEditor server
