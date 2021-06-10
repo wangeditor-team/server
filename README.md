@@ -10,14 +10,14 @@
 
 ### 发布到测试机
 
-代码 push 到 `server` 分支，即可自动发布到测试机。
+代码 push 到 `main` 分支，即可自动发布到测试机 https://github.com/wangeditor-team/server/actions
 
-具体可参考 `.github/workflows/server.yml` 。
+待执行完之后，可访问 `http://106.12.198.214:3000/api/test`
+
+具体可参考 `.github/workflows/deploy.yml`
 
 ### 测试机配置
 
-nginx 需要配置，做反向代理，参考测试机 `/etc/nginx/nginx.conf`
-- 代理接口 `/api/`
-- 代理图片 url `/server/upload-files/`
+测试机安装 nodejs npm pm2
 
-定时删除文件，配置 crontab 定时执行 `server/rm.sh`
+定时删除文件，配置 crontab 定时执行 `bin/rm.sh`
