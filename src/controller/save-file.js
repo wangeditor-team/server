@@ -8,6 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const formidable = require('formidable')
 const { objForEach } = require('../util')
+const { PROTOCOL, PORT, IP } = require('../../config')
 const FILE_FOLDER = 'upload-files'
 const isWindows = os.type().toLowerCase().indexOf('windows') >= 0
 const TMP_FOLDER = 'upload-files-tmp'
@@ -80,7 +81,7 @@ function saveFiles(req) {
                 // 将临时文件保存为正式文件
                 fs.renameSync(tempFilePath, fullFileName)
                 // 存储链接
-                const url = `/${FILE_FOLDER}/` + fileName
+                const url = `${PROTOCOL}://${IP}:${PORT}/${FILE_FOLDER}/${fileName}`
                 imgLinks.push({ url, alt: fileName, href: url })
             })
             console.log('imgLinks...', imgLinks)
