@@ -1,0 +1,10 @@
+version: '3'
+services:
+    wangEditor-server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: wangEditor-server # 依赖于当前 Dockerfile 创建镜像
+        container_name: wangEditor-server
+        ports:
+            - 3000:3000 # 宿主机通过 8081 访问

@@ -1,0 +1,1 @@
+0 4 * * * /usr/bin/sh /app/bin/rm.sh

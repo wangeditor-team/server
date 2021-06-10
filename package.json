@@ -5,7 +5,8 @@
   "description": "wangEditor server",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon bin/www.js"
+    "dev": "cross-env NODE_ENV=dev nodemon bin/www.js",
+    "prd-dev": "cross-env NODE_ENV=prd_dev pm2 start bin/pm2.config.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "multiparty": "^4.2.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "pm2": "^5.0.4"
   }
 }

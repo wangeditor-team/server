@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# github actions 中文文档 https://docs.github.com/cn/actions/getting-started-with-github-actions
+
+name: deploy
+
+on:
+    push:
+        branches:
+            - 'main' # 只针对 main 分支
+        paths:
+            - '.github/workflows/*'
+            - 'src/**'
+            - 'Dockerfile'
+            - 'docker-compose.yml'
+            - 'bin/*'
+
+jobs:
+    deploy-dev:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: set ssh key # 临时设置 ssh key
+              run: |
+                  mkdir -p ~/.ssh/
+                  echo "${{secrets.WFP_ID_RSA}}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan ${{secrets.BAIDU_SERVER}} >> ~/.ssh/known_hosts
+            - name: deploy # 部署
+              run: |
+                  ssh work@${{secrets.BAIDU_SERVER}} "
+                    # 【注意】要提前 git clone 代码到 /home/work/wangEditor-team/server 目录
+
+                    cd /home/work/wangEditor-team/server;
+                    git checkout .;
+                    git checkout main;
+                    git pull origin main; # 重新下载最新代码
+
+                    # 启动 docker
+                    docker-compose build wangEditor-server; # 和 docker-compose.yml service 名字一致
+                    docker-compose up -d;
+                  "
+            - name: delete ssh key # 删除 ssh key
+              run: rm -rf ~/.ssh/id_rsa
