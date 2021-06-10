@@ -37,9 +37,9 @@ jobs:
                     git checkout main;
                     git pull origin main; # 重新下载最新代码
 
-                    # 启动 docker
-                    docker-compose build wangEditor-server; # 和 docker-compose.yml service 名字一致
-                    docker-compose up -d;
+                    # 启动服务
+                    npm i;
+                    npm run prd-dev;
                   "
             - name: delete ssh key # 删除 ssh key
               run: rm -rf ~/.ssh/id_rsa
