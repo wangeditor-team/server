@@ -67,14 +67,17 @@ function saveFiles(req) {
                 fs.mkdirSync(storePath)
             }
 
+            console.log('fields......', fields)
+
             // 遍历所有上传来的图片
             objForEach(files, (name, file) => {
                 console.log('name...', name)
+                console.log('file.name...', file.name)
 
                 // 图片临时位置
                 const tempFilePath = file.path
                 // 图片名称和路径
-                const fileName = genRandomFileName(name) // 为文件名增加一个随机数，防止同名文件覆盖
+                const fileName = genRandomFileName(file.name || name) // 为文件名增加一个随机数，防止同名文件覆盖
                 console.log('fileName...', fileName)
                 const fullFileName = path.join(storePath, fileName)
                 console.log('fullFileName...', fullFileName)
