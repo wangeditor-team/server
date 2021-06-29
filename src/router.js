@@ -20,6 +20,12 @@ router.post('/upload-img', async function (ctx, next) {
     ctx.body = data
 })
 
+// 上传图片 - 用于测试超时
+router.post('/upload-img-10s', async function (ctx, next) {
+    const data = await saveFiles(ctx.req, 10 * 1000)
+    ctx.body = data
+})
+
 // 上传视频
 router.post('/upload-video', async function (ctx, next) {
     const data = await saveVideoFile(ctx.req)

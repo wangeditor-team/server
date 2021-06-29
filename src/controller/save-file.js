@@ -42,8 +42,9 @@ function genRandomFileName(fileName = '') {
 /**
  * 保存上传的文件
  * @param {Object} req request
+ * @param {number} time time 用于测试超时
  */
-function saveFiles(req) {
+function saveFiles(req, time = 0) {
     return new Promise((resolve, reject) => {
         const imgLinks = []
         const form = formidable({ multiples: true })
@@ -90,10 +91,12 @@ function saveFiles(req) {
             console.log('imgLinks...', imgLinks)
 
             // 返回结果
-            resolve({
-                errno: 0,
-                data: imgLinks,
-            })
+            setTimeout(() => {
+                resolve({
+                    errno: 0,
+                    data: imgLinks,
+                })
+            }, time)
         })
     })
 }
