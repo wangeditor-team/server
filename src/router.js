@@ -26,6 +26,11 @@ router.post('/upload-img-10s', async function (ctx, next) {
     ctx.body = data
 })
 
+// 上传图片 - 测试 failed
+router.post('/upload-img-failed', async function (ctx, next) {
+    ctx.body = { errno: 1, message: 'upload-img-failed - 模拟失败' }
+})
+
 // 上传视频
 router.post('/upload-video', async function (ctx, next) {
     const data = await saveVideoFile(ctx.req)
