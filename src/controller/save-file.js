@@ -91,6 +91,13 @@ function saveFiles(req, time = 0) {
             console.log('imgLinks...', imgLinks)
 
             // 返回结果
+            let data
+            if (imgLinks.length === 1) {
+                data = imgLinks[0]
+            } else {
+                data = imgLinks
+            }
+
             setTimeout(() => {
                 resolve({
                     errno: 0,

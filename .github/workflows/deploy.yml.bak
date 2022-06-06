@@ -2,6 +2,8 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 # github actions 中文文档 https://docs.github.com/cn/actions/getting-started-with-github-actions
 
+# 2022.06.07 百度云服务器到期，则不再执行该 deploy 任务了 —— wangfupeng
+
 name: deploy
 
 on:
