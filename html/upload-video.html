@@ -77,13 +77,13 @@
       // // 用户自定义插入视频
       // customInsert(res, insertFn) {
       //   console.log('customInsert', res)
-      //   const imgInfo = res.data || {}
-      //   const { url } = imgInfo
+      //   const videoInfo = res.data || {}
+      //   const { url, poster } = videoInfo
       //   if (!url) throw new Error(`Video url is empty`)
 
       //   // 自己插入视频
       //   console.log('自己插入视频', url)
-      //   insertFn(url)
+      //   insertFn(url, poster)
       // },
 
       // // 用户自定义上传视频
@@ -94,7 +94,8 @@
       //     // 插入一张视频，模拟异步
       //     setTimeout(() => {
       //       const src = `https://www.w3school.com.cn/i/movie.ogg`
-      //       insertFn(src)
+      //       const poster = 'https://www.baidu.com/img/flexible/logo/pc/result@2.png'
+      //       insertFn(src, poster)
       //       resolve('ok')
       //     }, 500)
       //   })
@@ -107,7 +108,7 @@
       //   // 插入一张视频，模拟异步
       //   setTimeout(() => {
       //     const src = '<iframe src="//player.bilibili.com/player.html?aid=250348909&bvid=BV1Pv411w7Xr&cid=401518678&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
-      //     insertFn(src)
+      //     insertFn(src, '')
       //   }, 500)
       // },
     }

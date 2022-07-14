@@ -93,7 +93,8 @@ function saveFiles(req) {
             resolve({
                 errno: 0,
                 data: {
-                    url: videoLinks[0]
+                    url: videoLinks[0],
+                    poster: 'https://www.baidu.com/img/flexible/logo/pc/result@2.png' // 视频封面图
                 },
             })
         })
