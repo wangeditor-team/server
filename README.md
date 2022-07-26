@@ -1,5 +1,7 @@
 # wangEditor server
 
+[English](./README-en.md)
+
 用于测试图片上传、视频上传等，需要服务端配合的功能。需下载到本地运行。
 
 ## 环境要求

@@ -17,7 +17,6 @@
     Upload video
   </p>
 
-  <!-- 编辑器 -->
   <div>
     <div id="editor-toolbar" class="editor-toolbar"></div>
     <div id="editor-text-area" class="editor-text-area"></div>
@@ -29,7 +28,7 @@
   <script>
     const E = window.wangEditor
 
-    // 切换语言
+    // Change language
     const LANG = location.href.indexOf('lang=en') > 0 ? 'en' : 'zh-CN'
     E.i18nChangeLanguage(LANG)
 
@@ -41,23 +40,23 @@
     }
     editorConfig.MENU_CONF['uploadVideo'] = {
       server: '/api/upload-video',
-      // server: '/api/upload-img-failed', // 用于测试 failed
-      // server: '/api/xxx', // 用于测试 404
+      // server: '/api/upload-img-failed', // test failed
+      // server: '/api/xxx', // test 404
 
       timeout: 5 * 1000, // 5s
 
       fieldName: 'custom-fileName',
       meta: { token: 'xxx', a: 100 },
-      metaWithUrl: true, // 参数拼接到 url 上
+      metaWithUrl: true, // join params to url
       headers: { Accept: 'text/x-json' },
 
       maxFileSize: 10 * 1024 * 1024, // 10M
 
-      onBeforeUpload(files) {
-        console.log('onBeforeUpload', files)
+      onBeforeUpload(file) {
+        console.log('onBeforeUpload', file)
 
-        return files // 返回哪些文件可以上传
-        // return false // 会阻止上传
+        return file // will upload this file
+        // return false // prevent upload
       },
       onProgress(progress) {
         console.log('onProgress', progress)
@@ -74,24 +73,21 @@
         console.error('onError', file, err, res)
       },
 
-      // // 用户自定义插入视频
       // customInsert(res, insertFn) {
       //   console.log('customInsert', res)
       //   const videoInfo = res.data || {}
       //   const { url, poster } = videoInfo
       //   if (!url) throw new Error(`Video url is empty`)
 
-      //   // 自己插入视频
-      //   console.log('自己插入视频', url)
+      //   console.log('Your video url ', url)
       //   insertFn(url, poster)
       // },
 
-      // // 用户自定义上传视频
       // customUpload(file, insertFn) {
       //   console.log('customUpload', file)
 
       //   return new Promise((resolve) => {
-      //     // 插入一张视频，模拟异步
+      //     // Simulate async insert video
       //     setTimeout(() => {
       //       const src = `https://www.w3school.com.cn/i/movie.ogg`
       //       const poster = 'https://www.baidu.com/img/flexible/logo/pc/result@2.png'
@@ -101,11 +97,10 @@
       //   })
       // },
 
-      // // 自定义选择视频（如图床）
       // customBrowseAndUpload(insertFn) {
-      //   alert('自定义选择视频，如弹出图床')
+      //   alert('Custom browse and upload')
 
-      //   // 插入一张视频，模拟异步
+      //   // Simulate async insert video
       //   setTimeout(() => {
       //     const src = '<iframe src="//player.bilibili.com/player.html?aid=250348909&bvid=BV1Pv411w7Xr&cid=401518678&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
       //     insertFn(src, '')
